@@ -6,8 +6,9 @@
   <title>Marius</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
-
-  <style>
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet"/>
+  
+    <style>
     /* ── CSS validé d'origine ── */
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -184,14 +185,14 @@
     }
 
     .content-section::after {
-      content: "";
+      content: "";           /* obligatoire, sinon il n'apparaît pas */
       position: absolute;
       left: 50%;
       bottom: 0;
       transform: translateX(-50%);
-      width: 100vw;
-      height: 1px;
-      background: rgba(201, 168, 76, 0.12);
+      width: 100vw;          /* s'étend sur toute la largeur de l'écran */
+      height: 1px;           /* c'est juste une fine ligne */
+      background: rgba(201, 168, 76, 0.5);  /* dorée très transparente */
     }
 
     .content-section h2 {
@@ -238,6 +239,164 @@
       nav { padding: 0 1.5rem; }
       .content-section { padding: 0 1.5rem; }
     }
+    /* Fin Responsive paddings pour mobile */
+
+    /* ##################################### Cartes projets ##################################### */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .proj-card {
+      background: var(--surface);
+      border-radius: 2px;
+      border: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+      padding: 2rem 2.2rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      transition: border-color .3s, transform .3s;
+    }
+    .proj-card:hover {
+      border-color: rgba(201,168,76,.55);
+      transform: translateY(-4px);
+      border-left: 3px solid var(--gold);
+    }
+    .proj-card:hover .arrow { transform: translateX(4px); }
+
+    .proj-meta {
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+    .proj-title {
+      font-family: var(--title);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .85rem;
+      line-height: 1.15;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .arrow {
+      font-size: 1.1rem;
+      color: var(--gold);
+      transition: transform .3s;
+      display: inline-block;
+    }
+    .proj-desc {
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.65;
+      margin-bottom: 1.6rem;
+      max-width: 90%;
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .skill {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,.35);
+      border-radius: 3px;
+      padding: .25rem .65rem;
+      background: rgba(201,168,76,.05);
+    }
+    /* Fin Cartes projets */
+
+    /* Cartes Compétences */
+    /* ##################################### Cartes Compétences ##################################### */
+    .sk-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .sk-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sk-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .sk-card-title {
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .sk-item {
+      margin-bottom: 1rem;
+    }
+
+    .sk-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .sk-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: .35rem;
+    }
+
+    .sk-name {
+      font-size: .85rem;
+      color: var(--white);
+    }
+
+    .sk-lvl {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--muted);
+    }
+
+    .sk-bar-bg {
+      height: 3px;
+      background: rgba(201,168,76,.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .sk-bar {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    /* Fin Cartes Compétences */
+
   </style>
 </head>
 
@@ -249,9 +408,9 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="#academic-path">Parcours</a></li>
       <li><a href="#projects">Projets</a></li>
       <li><a href="#skills">Compétences</a></li>
+      <li><a href="#academic-path">Parcours</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
@@ -262,24 +421,112 @@
     </h1>
   </section>
 
+  <!-------------------------------------- Mes différents projets -------------------------------------->
+  <section id="projects" class="content-section reveal">
+    <h2>Projets</h2>
+    <div class="project-grid">
+
+      <!-- Projet ACP,AFC,ACM -->
+        <a class="proj-card" href="project-example.html">
+        <div class="proj-meta">// Projet IPSA — 2026</div>
+        <div class="proj-title">
+          Analyse de données : découverte de méthodes descriptives
+          <span class="arrow">→</span>
+        </div>
+        <p class="proj-desc">
+          Compréhension des mathématiques appliqués derrière les algorithmes d'ACP, AFC et ACM.
+        </p>
+        <div class="skills">
+          <span class="skill">Python</span>
+          <span class="skill">ACP</span>
+          <span class="skill">AFC</span>
+          <span class="skill">ACM</span>
+        </div>
+      </a>
+
+
+      <!-- Projet Réseaux de neurones -->
+        <a class="proj-card" href="project-example.html">
+        <div class="proj-meta">// Projet IPSA — 2026</div>
+        <div class="proj-title">
+          Découverte des réseaux de neurones
+          <span class="arrow">→</span>
+        </div>
+        <p class="proj-desc">
+          Compréhension des mathématiques cachés derrière ces réseaux et création d'un réseau de neurones pour effectuer une tâche simple après entrainement.
+        </p>
+        <div class="skills">
+          <span class="skill">Python</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+  <section id="skills" class="content-section reveal">
+    <h2>Compétences</h2>
+    <div class="sk-grid">
+
+      <div class="sk-card">
+        <div class="sk-card-title"><i class="ti ti-code" aria-hidden="true"></i> Langages</div>
+        <div class="sk-item">
+          <div class="sk-label"><span class="sk-name">Python</span><span class="sk-lvl">Maîtrise</span></div>
+          <div class="sk-bar-bg"><div class="sk-bar" style="width:85%"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-label"><span class="sk-name">C / C++</span><span class="sk-lvl">Maîtrise</span></div>
+          <div class="sk-bar-bg"><div class="sk-bar" style="width:70%"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-label"><span class="sk-name">Developpement Web</span><span class="sk-lvl">Intermédiaire</span></div>
+          <div class="sk-bar-bg"><div class="sk-bar" style="width:60%"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-label"><span class="sk-name">Arduino</span><span class="sk-lvl">Débutant</span></div>
+          <div class="sk-bar-bg"><div class="sk-bar" style="width:40%"></div></div>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <div class="sk-card-title"><i class="ti ti-users" aria-hidden="true"></i> Soft skills</div>
+        <div class="sk-item">
+          <div class="sk-label"><span class="sk-name">Travail en équipe</span><span class="sk-lvl">Avancé</span></div>
+          <div class="sk-bar-bg"><div class="sk-bar" style="width:90%"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-label"><span class="sk-name">Communication écrite</span><span class="sk-lvl">Avancé</span></div>
+          <div class="sk-bar-bg"><div class="sk-bar" style="width:85%"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-label"><span class="sk-name">Gestion de projet</span><span class="sk-lvl">Intermédiaire</span></div>
+          <div class="sk-bar-bg"><div class="sk-bar" style="width:60%"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-label"><span class="sk-name">Veille technique</span><span class="sk-lvl">Avancé</span></div>
+          <div class="sk-bar-bg"><div class="sk-bar" style="width:80%"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+
   <section id="academic-path" class="content-section reveal">
     <h2>Parcours</h2>
     <div class="section-placeholder">
       [  ]
-    </div>
-  </section>
-
-  <section id="projects" class="content-section reveal">
-    <h2>Projets</h2>
-    <div class="section-placeholder">
-      [ Ta future grille de projets ou portfolio ici ]
-    </div>
-  </section>
-
-  <section id="skills" class="content-section reveal">
-    <h2>Compétences</h2>
-    <div class="section-placeholder">
-      [ Tes compétences, technos, outils et expertises ici ]
     </div>
   </section>
 
@@ -309,4 +556,10 @@
     });
   </script>
 </body>
+
+<footer>
+  <span class="sk-card-title">© 2026 Marius</span>
+</footer>
+
+
 </html>
