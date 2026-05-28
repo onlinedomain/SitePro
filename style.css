@@ -211,6 +211,7 @@ nav::after{
     padding: 0 4rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 50px;
 }
 
 .content-section::after {
@@ -350,6 +351,43 @@ nav::after{
     padding: .25rem .65rem;
     background: rgba(201,168,76,.05);
 }
+
+.skill.goldsk {
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,.35);
+    background: rgba(201,168,76,.05);
+}
+
+.skill.gold-light {
+  color: #e8c87a;
+  border: 1px solid rgba(232,200,122,.35);
+  background: rgba(232,200,122,.05);
+}
+
+.skill.blue {
+  color: #7ab8e8;
+  border: 1px solid rgba(122,184,232,.35);
+  background: rgba(122,184,232,.05);
+}
+
+.skill.green {
+  color: #8ae8c4;
+  border: 1px solid rgba(138,232,196,.35);
+  background: rgba(138,232,196,.05);
+}
+
+.skill.red {
+  color: #e87a7a;
+  border: 1px solid rgba(232,122,122,.35);
+  background: rgba(232,122,122,.05);
+}
+
+.skill.purple {
+  color: #b87ae8;
+  border: 1px solid rgba(184,122,232,.35);
+  background: rgba(184,122,232,.05);
+}
+
 /* Fin Cartes projets */
 
 /* Cartes Compétences */
@@ -370,7 +408,7 @@ nav::after{
 .sk-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 2px;
     padding: 1.5rem;
 }
 
@@ -501,7 +539,7 @@ nav::after{
 .stage-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 2px;
     padding: 1.2rem 1.4rem;
     margin-bottom: 1rem;
     position: relative;
