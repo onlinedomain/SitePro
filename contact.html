@@ -6,6 +6,7 @@
   <title>Marius — Contact</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet"/>
 
   <style>
     /* ── Charte graphique d'origine préservée ── */
@@ -32,7 +33,17 @@
       --title:'Playfair Display',serif;
       --mono:'DM Mono',monospace;
     }
-
+    .sk-card-title {
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
     body::before{
       content:'';
       position:fixed;
@@ -287,6 +298,123 @@
       nav { padding: 0 1.5rem; }
       .contact-form { padding: 2rem; }
     }
+
+
+    .email-copy {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 2rem;
+    }
+
+    .email-address {
+      font-family: var(--mono);
+      font-size: .85rem;
+      color: var(--white);
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: .4rem .6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all .25s;
+      display: flex;
+      align-items: center;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .copy-btn.copied {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    /* ##################################### Adaptation navbar mobile ##################################### */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .burger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--white);
+      transition: all .3s ease;
+    }
+
+    .burger.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .burger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .burger.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s ease;
+      background: #0e0e14;
+      border-bottom: 1px solid var(--border);
+      position: fixed;
+      top: 82px;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .mobile-menu.open {
+      max-height: 300px;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: .9rem 1.5rem;
+      font-family: var(--mono);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,168,76,.06);
+      transition: color .2s, padding-left .2s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--gold);
+      padding-left: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+    }
+    /* ____________________________________ Fin Adaptation navbar mobile ____________________________________ */
   </style>
 </head>
 
@@ -294,8 +422,8 @@
 
   <!-- NAV -->
   <nav>
-    <a class="nav-logo" href="#">
-      <span><span class="gold">Marius</span></span>
+    <a class="nav-logo" href="index.html#">
+      <span><span class="gold">Home</span></span>
     </a>
 
     <ul class="nav-links">
@@ -304,7 +432,18 @@
       <li><a href="index.html#academic-path">Parcours</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
+
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#projects">Projets</a>
+    <a href="index.html#skills">Compétences</a>
+    <a href="index.html#academic-path">Parcours</a>
+    <a href="index.htmlcontact.html">Contact</a>
+  </div>
 
   <!-- CONTENU PRINCIPAL CONTACT -->
   <main class="contact-container">
@@ -323,6 +462,16 @@
         <li><a href="https://www.linkedin.com/search/results/all/?keywords=marius%20coissard&origin=GLOBAL_SEARCH_HEADER" target="_blank">// LINKEDIN</a></li>
         <li><a href="#" target="_blank">// GITHUB (Dépôts projets / codes)</a></li>
       </ul>
+
+
+      <!--
+      <span>marius.coissard@email.com</span>
+      <button class="copy-btn" onclick="copyEmail()">
+        <i class="ti ti-copy" aria-hidden="true"></i>
+      </button> 
+      -->
+
+      
     </div>
 
     <div class="contact-form">
@@ -352,13 +501,43 @@
       </form>
     </div>
 
-    
+
+
+    <script>
+      function copyEmail() {
+        navigator.clipboard.writeText("marius.coissard@email.com");
+        const btn = document.querySelector(".copy-btn");
+        btn.innerHTML = '<i class="ti ti-check"></i>';
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.innerHTML = '<i class="ti ti-copy"></i>';
+          btn.classList.remove("copied");
+        }, 2000);
+      }
+      const burger = document.getElementById('burger');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      burger.addEventListener('click', function() {
+        burger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          burger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    </script>
+
+
+
   </main>
 
 </body>
 
 <footer>
-  <span>© 2026 Marius</span>
+  <span class="sk-card-title">© 2026 Marius</span>
 </footer>
 
 </html>
