@@ -39,8 +39,13 @@
 
   <section class="hero">
     <h1>
-      <span class="gold">Marius COISSARD</span>
+      <span class="gold" id="typed"></span><span class="cursor" id="cursor"></span>
     </h1>
+
+    <p class="hero-sub" id="hero-sub">Étudiant à l'Institut Polytechnique des Sciences Avancées (ou IPSA) de Toulouse, 
+      je suis passionné de sciences du numérique et de programmation. 
+      Vous trouverez ici une multitude de projets que j'ai adoré réaliser, au  cours de mes étude ou personnellement, mes compétences acquises 
+      en partie grâce à ceux-ci et mon parcours scolaire et professionnel.</p>
   </section>
 
   
@@ -96,47 +101,26 @@
     <h2>Compétences</h2>
     <div class="sk-grid">
 
-      <div class="sk-card">
-        <div class="sk-card-title"><i class="ti ti-code" aria-hidden="true"></i> Langages</div>
-        <div class="sk-item">
-          <div class="sk-label"><span class="sk-name">Python</span><span class="sk-lvl">Maîtrise</span></div>
-          <div class="sk-bar-bg"><div class="sk-bar" style="width:85%"></div></div>
-        </div>
-        <div class="sk-item">
-          <div class="sk-label"><span class="sk-name">C / C++</span><span class="sk-lvl">Maîtrise</span></div>
-          <div class="sk-bar-bg"><div class="sk-bar" style="width:70%"></div></div>
-        </div>
-        <div class="sk-item">
-          <div class="sk-label"><span class="sk-name">Developpement Web</span><span class="sk-lvl">Intermédiaire</span></div>
-          <div class="sk-bar-bg"><div class="sk-bar" style="width:60%"></div></div>
-        </div>
-        <div class="sk-item">
-          <div class="sk-label"><span class="sk-name">Arduino</span><span class="sk-lvl">Débutant</span></div>
-          <div class="sk-bar-bg"><div class="sk-bar" style="width:40%"></div></div>
-        </div>
-      </div>
-
-      <div class="sk-card">
-        <div class="sk-card-title"><i class="ti ti-users" aria-hidden="true"></i> Soft skills</div>
-        <div class="sk-item">
-          <div class="sk-label"><span class="sk-name">Travail en équipe</span><span class="sk-lvl">Avancé</span></div>
-          <div class="sk-bar-bg"><div class="sk-bar" style="width:90%"></div></div>
-        </div>
-        <div class="sk-item">
-          <div class="sk-label"><span class="sk-name">Communication écrite</span><span class="sk-lvl">Avancé</span></div>
-          <div class="sk-bar-bg"><div class="sk-bar" style="width:85%"></div></div>
-        </div>
-        <div class="sk-item">
-          <div class="sk-label"><span class="sk-name">Gestion de projet</span><span class="sk-lvl">Intermédiaire</span></div>
-          <div class="sk-bar-bg"><div class="sk-bar" style="width:60%"></div></div>
-        </div>
-        <div class="sk-item">
-          <div class="sk-label"><span class="sk-name">Veille technique</span><span class="sk-lvl">Avancé</span></div>
-          <div class="sk-bar-bg"><div class="sk-bar" style="width:80%"></div></div>
-        </div>
-      </div>
-
+    <div class="sk-card">
+      <div class="sk-card-title"><i class="ti ti-code" aria-hidden="true"></i>Langages de programmation</div>
+      <div class="sk-item"><span class="sk-name">Python</span><span class="sk-lvl avance">Niveau avancé</span></div>
+      <div class="sk-item"><span class="sk-name">C / C++</span><span class="sk-lvl avance">Niveau intermédiaire</span></div>
+      <div class="sk-item"><span class="sk-name">Arduino</span><span class="sk-lvl avance">Meilleur : Robot suiveur de ligne</span></div>
+      <div class="sk-item"><span class="sk-name">Développement Web</span><span class="sk-lvl avance">Niveau intermédiaire</span></div>
     </div>
+
+    <div class="sk-card">
+      <div class="sk-card-title"><i class="ti ti-users" aria-hidden="true"></i>Soft skills</div>
+      <div class="sk-item"><span class="sk-name">Travail en équipe</span><span class="sk-lvl avance">Très à l'aise</span></div>
+      <div class="sk-item"><span class="sk-name">Communication écrite</span><span class="sk-lvl avance">Courtois, efficace</span></div>
+      <div class="sk-item"><span class="sk-name">Gestion de projet</span><span class="sk-lvl avance">Bon, et beaucoup à apprendre</span></div>
+      <div class="sk-item"><span class="sk-name">Esprit critique</span><span class="sk-lvl avance">Cherche toujours à optimiser</span></div>
+      <div class="sk-item"><span class="sk-name">Intelligence émotionnelle</span><span class="sk-lvl avance">À l'écoute des autres</span></div>
+    </div>
+
+  </div>
+
+   
   </section>
 
 
@@ -200,9 +184,11 @@
       </div>
 
     </div>
-
-
   </section>
+
+
+
+
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -242,11 +228,34 @@
           mobileMenu.classList.remove('open');
         });
       });
+
+
+      // Affichage dynamique du texte à l'ouverture du site
+      const text = "Marius COISSARD";
+      const typed = document.getElementById("typed");
+      const cursor = document.getElementById("cursor");
+      const heroSub = document.getElementById("hero-sub");
+      let i = 0;
+
+      function type() {
+        if (i < text.length) {
+          typed.textContent += text[i];
+          i++;
+          setTimeout(type, 50);
+        } else {
+          setTimeout(() => {
+            cursor.classList.add("hide");
+            heroSub.classList.add("visible");
+          }, 800);
+        }
+      }
+
+      setTimeout(type, 400);
   </script>
 </body>
 
 <footer>
-  <span class="sk-card-title">© 2026 Marius</span>
+  <span class="sk-card-title">© 2026 Marius COISSARD</span>
 </footer>
 
 
