@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marius</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ── CSS validé d'origine ── */
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      background:#0a0a0f;
+      color:#f5f1e6;
+      font-family:'Inter',sans-serif;
+      overflow-x:hidden;
+      min-height:100vh;
+      position:relative;
+    }
+
+    :root{
+      --bg:#0a0a0f;
+      --surface:#111117;
+      --surface-light:#171720;
+
+      --gold:#c9a84c;
+      --gold-light:#e8c87a;
+      --gold-soft:rgba(201,168,76,.12);
+
+      --white:#f5f1e6;
+      --muted:#8e856d;
+
+      --border:rgba(201,168,76,.15);
+
+      --title:'Playfair Display',serif;
+      --body:'Inter',sans-serif;
+      --mono:'DM Mono',monospace;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background:
+        radial-gradient(circle at top right, rgba(201,168,76,.12), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(201,168,76,.06), transparent 30%);
+      pointer-events:none;
+    }
+
+    body::after{
+      content:'';
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      opacity:.35;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size:80px 80px;
+    }
+
+    nav{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:82px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+
+      padding:0 4rem;
+
+      background:rgba(10,10,15,.72);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+      z-index:1000;
+    }
+
+    nav::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-1px;
+      width:100%;
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(201,168,76,.4),transparent);
+    }
+
+    .nav-logo{
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+    }
+
+    .nav-logo::before{
+      content:'';
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 10px rgba(201,168,76,.8),0 0 25px rgba(201,168,76,.35);
+    }
+
+    .nav-logo span{
+      font-family:var(--title);
+      font-size:1.6rem;
+      font-weight:700;
+    }
+
+    .gold{color:var(--gold)}
+    .white{color:var(--white)}
+
+    .nav-links{
+      display:flex;
+      gap:2.5rem;
+      list-style:none;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      font-family:var(--mono);
+      font-size:.8rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted);
+      position:relative;
+    }
+
+    .nav-links a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-8px;
+      width:0%;
+      height:1px;
+      background:var(--gold);
+      transition:.25s;
+    }
+
+    .nav-links a:hover{
+      color:var(--white);
+    }
+
+    .nav-links a:hover::after{
+      width:100%;
+    }
+
+    /* HERO */
+    .hero{
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:0 2rem;
+    }
+
+    .hero h1{
+      font-family:var(--title);
+      font-size:clamp(4rem,10vw,9rem);
+      letter-spacing:-0.05em;
+      line-height:.95;
+    }
+
+    .hero h1 .gold{color:var(--gold)}
+
+    /* ── NOUVEAU : Style des Sections de contenu ── */
+   .content-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .content-section::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 1px;
+      background: rgba(201, 168, 76, 0.12);
+    }
+
+    .content-section h2 {
+      font-family: var(--title);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--white);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .content-section h2 span {
+      color: var(--gold);
+    }
+
+    /* Conteneur vide pour ton futur contenu */
+    .section-placeholder {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      background: rgba(17, 17, 23, 0.4);
+      border-radius: 4px;
+      padding: 3rem;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── NOUVEAU : Effet d'apparition dynamique (Scroll Reveal) ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive paddings pour mobile */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .content-section { padding: 0 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">
+      <span><span class="gold">Marius</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#academic-path">Parcours</a></li>
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#skills">Compétences</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1>
+      <span class="gold">Marius</span>
+    </h1>
+  </section>
+
+  <section id="academic-path" class="content-section reveal">
+    <h2>Parcours</h2>
+    <div class="section-placeholder">
+      [  ]
+    </div>
+  </section>
+
+  <section id="projects" class="content-section reveal">
+    <h2>Projets</h2>
+    <div class="section-placeholder">
+      [ Ta future grille de projets ou portfolio ici ]
+    </div>
+  </section>
+
+  <section id="skills" class="content-section reveal">
+    <h2>Compétences</h2>
+    <div class="section-placeholder">
+      [ Tes compétences, technos, outils et expertises ici ]
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sectionsToReveal = document.querySelectorAll(".reveal");
+
+      const options = {
+        root: null, // utilise le viewport du navigateur
+        threshold: 0.15, // déclenche l'effet dès que 15% de la section est visible
+        rootMargin: "0px 0px -50px 0px" // déclenche un poil avant que ça touche le bas
+      };
+
+      const observer = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            // Optionnel : on peut unobserve si on veut que l'animation ne se joue qu'une seule fois
+            // observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+
+      sectionsToReveal.forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>
